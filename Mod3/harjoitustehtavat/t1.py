@@ -6,8 +6,6 @@ for char in name:
     if char.isalpha() or char == "-":
         filtered_name += char
 
-#"".join(char for char in name if char.isalpha() or char == "-")
-
 final_name = filtered_name.title().strip()
 
 if final_name == "Batman":

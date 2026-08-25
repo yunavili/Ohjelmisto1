@@ -1,0 +1,1 @@
+Tehtävä 1 on tehty ja .isalpha -metodi opittu
