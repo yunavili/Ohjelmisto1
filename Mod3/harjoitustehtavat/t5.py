@@ -15,7 +15,7 @@ else:
     kilograms = int(total_grams // 1000)
     grams = total_grams % 1000
 
-    print("Weight in modern units:")
+    print("Weight in modern units: ")
     print(f"{kilograms} kilograms and {grams:.2f} grams.")
 
 
