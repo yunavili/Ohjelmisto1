@@ -6,11 +6,11 @@ hyttiluokka = str(input("Laittaa laivan hyttiluokan: ")).strip()
 
 if hyttiluokka == "LUX":
     print("LUX on parvekkeelinen hytti yläkannella")
-elif hyttiluokka == "A":
+elif hyttiluokka == "A" or hyttiluokka == "a":
     print("A on ikkunnallinen hytti autokannen yläpuolella")
-elif hyttiluokka == "B":
+elif hyttiluokka == "B" or hyttiluokka == "b":
     print("B on ikkunaton hytti autokannen yläpuolella")
-elif hyttiluokka == "C":
+elif hyttiluokka == "C" or hyttiluokka == "c":
     print("C on ikkunaton hytti autokannen alapuolella")    
 else:
     print("Virheellinen hyttiluokka")
