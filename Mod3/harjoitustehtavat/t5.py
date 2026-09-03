@@ -1,3 +1,4 @@
+import sys
 
 print("This program converts old Swedish weight units to modern units.")
 
@@ -7,7 +8,7 @@ try:
     lots = float(input("Enter lots: "))
 except ValueError:
     print("Please enter valid numeric values.") 
-    exit()
+    sys.exit()
 else:
     total_lots = lots + (pounds * 32) + (lispunds * 20 * 32)
     total_grams = total_lots * 13.3
