@@ -4,6 +4,7 @@ def calcSum(numbers):
     if not numbers:
         print("List is empty!")
         return []
+        
     result = []
 
     for num in numbers:

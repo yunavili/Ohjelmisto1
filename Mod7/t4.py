@@ -1,9 +1,16 @@
 import math
 
-def f(numbers):
+def calcSum(numbers):
+    if not numbers:
+        print("List is empty!")
+        return 0
+    
     return sum(numbers)
 
-l = [1, 2, 3, 4, 5]
+numList = [1, 2, 3, 4, 5]
 
-totalSum = f(l)
-print (f"The total sum of the list is {totalSum}")
+if isinstance(numList, list):
+    totalSum = calcSum(numList)
+    print(f"The total sum of the list is: {totalSum}")
+else:
+    print("Provided variable is not a list!")
