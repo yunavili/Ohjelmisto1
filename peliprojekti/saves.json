@@ -1,0 +1,15 @@
+{
+    "player_hp": 20,
+    "place": "Ancient library",
+    "inventory": [
+        "Book of Inept Spells"
+    ],
+    "current_weight": 20,
+    "rooms_items": {
+        "Dungeon Cell": "Rusty Dagger",
+        "Ancient library": null,
+        "Mystical vault": "Mysterious Glowing Stone",
+        "Guard post": "Heavy Iron Key",
+        "Hallway": null
+    }
+}
