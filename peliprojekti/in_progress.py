@@ -274,6 +274,52 @@ dice_100 = Dice(100)
 
 player = Player(player_name, place=start_location)
 
+def load_game(filename = "saves.json"):
+    if not os.path.exists(filename):
+        print("Save file does not exist.")
+        return False
+    try:
+        with open(filename, "r", encoding="utf-8") as file:
+            data = json.load(file)
+        player.player_hp = data("player_hp")
+
+        for room in rooms:
+            if room.name == data["place"]
+            player.place = room
+            break
+        player.inventory = []
+        for itemname in data["inventory"]:
+            for item in all_items:
+                if item.name == item.name:
+                    player.inventory.append(item)
+                    break
+        player.current_weight = data["current_weight"]
+        for room in rooms:
+            item_name = data["rooms_items"].get(room.name)
+            if item_name:
+                for item in all_items:
+                    if item.name == item.name:
+                        room.item = item
+                        break
+                    else:
+                        room.item = None
+        print("Save loaded succsesfully.")
+        return True
+    except Exception:
+        print("Error occured while uploading file.")
+
+def save_game(filename=saves.json):
+    data = {
+        "player_hp": player.player_hp,
+        "place": player.place.name, 
+        "inventory": [item.name for item in player.inventory],
+        "current_weight": player.current_weight,
+        "rooms_items": {room.name: (room.item.name if room.item else None)} for room in rooms
+    }
+    with open(filename, "w", encoding="utf-8") as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+    print("Progress saved.")
+
 try:
     while True:
         print(textwrap.dedent("""
