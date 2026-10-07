@@ -291,7 +291,7 @@ def load_game(filename="saves.json"):
                 room.item = None
         print(f"Save loaded successfully. Welcome back, {player.name}!")
         return True
-    except Exception:
+    except FileNotFoundError:
         print("Error occurred while loading file.")
         return False
 
