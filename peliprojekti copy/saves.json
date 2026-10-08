@@ -1,26 +1,15 @@
 {
-    "player_name": "Unknown",
-    "player_age": 12,
-    "player_hp": 4,
-    "place": "Mystical vault",
+    "player_hp": 20,
+    "place": "Ancient library",
     "inventory": [
         "Book of Inept Spells"
     ],
     "current_weight": 20,
-    "met_npc": false,
     "rooms_items": {
         "Dungeon Cell": "Rusty Dagger",
         "Ancient library": null,
         "Mystical vault": "Mysterious Glowing Stone",
         "Guard post": "Heavy Iron Key",
         "Hallway": null
-    },
-    "enemies": {
-        "White Walker": {
-            "hp": 0
-        },
-        "Night Walker": {
-            "hp": 18
-        }
     }
 }

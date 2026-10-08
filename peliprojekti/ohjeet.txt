@@ -1,0 +1,7 @@
+    GAME INSTRUCTIONS
+
+1. Use the main menu numbers to perform actions or manipulate the game.
+2. Inventory is not endless! Carrying too much will downgrade your ability to fight.
+3. Don't forget to check on your health.
+4. Travel through the places, collect items, have conversations with NPCs and fight white walkers!
+5. There's 3 ways to finish the game. Play to find them out!
