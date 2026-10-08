@@ -1,90 +1,92 @@
-Westerosi Traveler -Game
+Tässä on käännös korjattuna siten, että pelin sisäiset toiminnot, valikkokohdat, muuttujat ja mekaaniset termit on jätetty englanniksi:
 
-A text-based adventure game set in the world of Westeros.
+---
+
+Westerosi Traveler -Peli
+
+Tekstipohjainen seikkailupeli, joka sijoittuu Westerosin maailmaan.
 
 Tekijä: Yuliia Ivanska eli yunaiv (mun nickname)
 
 THE IDEA
 
-Westerosi Traveler is a terminal role-playing game inspired by tabletop RPGs Dungeons & Dragons. "Winter is coming": the player is a traveler stranded in the harsh lands of Westeros, where danger lurks in every room. The game world consists of five rooms connected by a shadowy hallway. The player explores the rooms, collects items, talks to NPCs and fights White Walkers by rolling dice.
+Westerosi Traveler on terminaalissa pelattava roolipeli, joka on saanut inspiraationsa Dungeons & Dragons -pöytäroolipelistä. "Winter is coming": pelaaja on matkailija, joka on jäänyt loukkuun Westerosin karuihin maihin, missä vaara väijyy jokaisessa huoneessa. Pelimaailma koostuu viidestä huoneesta, joita yhdistää hämärä käytävä. Pelaaja tutkii huoneita, kerää esineitä, keskustelee NPC-hahmojen kanssa ja taistelee White Walkereita vastaan noppaa heittämällä.
 
-The game is played entirely through a numbered main menu: the player types the number of the action they want to perform, and the game responds with printed text. Exactly like in a very old-school text adventure!
+Peliä pelataan kokonaan numeroidun main menun kautta: pelaaja kirjoittaa sen toiminnon numeron, jonka hän haluaa suorittaa, ja peli vastaa tulostetulla tekstillä. Täsmälleen kuten erittäin vanhan koulukunnan tekstiseikkailussa!
 
 THE GOAL
 
-The player starts in the Hallway of the castle and find his goal there. There are three different endings:
+Pelaaja aloittaa Hallwaysta ja löytää tavoitteensa sieltä. Pelissä on kolme erilaista endingiä:
 
-1. Death – the player's HP drops to 0 in a fight.
-2. A New Alliance – the player meets Jon Snow in the Guard post and chooses to leave Westeros together with him. Travelling was never meant to be a solo adventure.
-3. The Survivor – the player defeats every enemy (the Night Walker in the Hallway and the White Walker in the Mystical vault) and survives against all odds.
+1. Death – pelaajan HP putoaa nollaan fightissa.
+2. A New Alliance – pelaaja tapaa Jon Snown Guard postissa ja päättää lähteä Westerosista yhdessä hänen kanssaan. Travelling ei ollut koskaan tarkoitettu solo adventureksi.
+3. The Survivor – pelaaja voittaa jokaisen enemyn (Night Walker Hallwayssa ja White Walker Mystical vaultissa) ja selviää kaikkien odotusten vastaisesti.
 
-There is no single "correct" way to finish the game – the player chooses whether to fight their way through, seek an alliance, or perish trying.
+Pelin läpäisyyn ei ole yhtä ainoaa "oikeaa" tapaa – pelaaja valitsee, taisteleeko hän tiensä läpi, etsiikö alliancea vai perishää yrittäessään.
 
 OPERATING PRINCIPLES
 
-The game is written in Python using only the standard library. It is started from the 'peliprojekti' folder python main.py -file
+Peli on kirjoitettu Pythonilla käyttäen vain vakiokirjastoa. Se käynnistetään 'peliprojekti'-kansansiosta komennolla python main.py -file
 
-At startup the game writes and displays the intro "intro.txt' and the instructions 'ohjeet.txt'. If a save file 'saves.json' exists, the player will load it, otherwise the game asks for the player's name and age, players under 12 are not allowed to play.
+Käynnistyksen yhteydessä peli kirjoittaa ja näyttää intro.txt- ja ohjeet.txt-tiedostot. Jos save file 'saves.json' on olemassa, peli lataa sen, muuten peli kysyy pelaajan nimeä ja ikää. Alle 12-vuotiaat eivät saa pelata.
 
-The heart of the game is a turn-based game loop src/game.py:
+Pelin sydän on turn-based game loop src/game.py:
 
-1. Check whether one of the three endings has been reached in src/endings.py.
-2. Show the main menu.
-3. Read the player's choice and run the corresponding action.
-4. Repeat until an ending occurs or the player exits.
+1. Check käydäänkö jokin kolmesta endingistä läpi tiedostossa src/endings.py.
+2. Show main menu.
+3. Read pelaajan choice ja run sitä vastaava action.
+4. Repeat kunnes ending tapahtuu tai pelaaja exitöi.
 
 MODULES
 
-'main.py' - Entry point: writes intro files, sets up the player, starts the game loop
-'src/game.py' - Main menu, player setup and the game loop
-'src/world.py' - Builds the whole game world: items, characters, rooms, enemies and dice
-'src/characters.py' - 'Character' base class and the Player', 'Enemy' and 'NPC' subclasses 
-'src/items.py' - 'Item', 'HealingPotion' and the 'Dice' class 
-'src/rooms.py' - 'Room' class: items, enemies, NPCs, descriptions and interactions
+'main.py' - Entry point: kirjoittaa intro-tiedostot, sets up playerin, käynnistää game loopin
+'src/game.py' - Main menu, player setup ja game loop
+'src/world.py' - Builds koko game worldin: items, characters, rooms, enemies ja dice
+'src/characters.py' - 'Character' base class sekä 'Player'-, 'Enemy'- ja 'NPC'-subclassit
+'src/items.py' - 'Item'-, 'HealingPotion'- ja 'Dice'-classit
+'src/rooms.py' - 'Room'-class: items, enemies, NPCs, descriptions ja interactions
 'src/combat.py' - Turn-based fighting: attack, take damage, escape
-'src/endings.py' - Checks the three end conditions of the game
-'src/save_manager.py' - Saving and loading the game to/from 'saves.json' (JSON format)
-'src/intro.py' - Intro and instruction texts shown at startup
+'src/endings.py' - Checks pelin kolme end conditionia
+'src/save_manager.py' - Saving ja loading pelille 'saves.json'-tiedostoon/tiedostosta (JSON format)
+'src/intro.py' - Intro ja instruction tekstit, jotka näytetään startupissa
 
 KEY MECHANICS
 
-- Dice rolls DND-style: the player's attack damage is a roll of a six-sided die 'Dice.roll', and the menu also offers a free d20 roll. The 'Dice' class supports any number of sides, multiple dice, modifiers and advantage/disadvantage rolls.
-- Combat: in a fight the player chooses 'Attack' or 'Run' each turn. Enemies counterattack with a fixed attack power (Night Walker 5, White Walker 4). A defeated enemy is removed from its room. Dying no longer ends the whole game immediately – the ending check handles it on the next loop.
-- Inventory with a weight limit: every item has a weight, and the player can carry at most 100 units. Items that are too heavy cannot be picked up, and thrown-away items are gone forever.
-- Rooms and interactions: each room has a description and may hold an item, an enemy, an NPC and special interactions (for example "inspect shackles" or "touch runes").
-- Saving: the game state (player, room, inventory, room items, enemy HP) is stored in a human-readable JSON file.
+* Dice rolls DND-style: pelaajan attack damage on roll kuusisivuisella nopalla 'Dice.roll', ja menu tarjoaa myös free d20 rollin. 'Dice'-class tukee mitä tahansa sivumäärää, multiple dicejä, modifiereita sekä advantage/disadvantage rolleja.
+* Combat: fightissa pelaaja valitsee 'Attack' tai 'Run' jokaisella turnilla. Enemies counterattackaavat fixed attack powerilla (Night Walker 5, White Walker 4). Defeated enemy poistetaan roomistaan. Dying ei enää endaa koko peliä välittömästi – ending check käsittelee sen seuraavalla loopilla.
+* Inventory weight limitillä: jokaisella itemillä on weight, ja pelaaja voi kantaa enintään 100 unitia. Itemit, jotka ovat too heavy, ei voi pickata up, ja thrown-away itemit ovat gone forever.
+* Rooms ja interactions: jokaisella roomilla on description ja siellä voi olla item, enemy, NPC ja special interactions (esimerkiksi "inspect shackles" tai "touch runes").
+* Saving: game state (player, room, inventory, room items, enemy HP) tallennetaan human-readable JSON fileen.
 
 FUNCTIONALITIES
 
-The main menu offers the following actions:
+Main menu tarjoaa seuraavat actionit:
 
 1. Roll a dice (d20)
-2. Stats – name, age, HP and health status (Full Health / Injured / Critical / Dead)
-3. Move – travel to any of the five rooms (Dungeon Cell, Ancient library, Mystical vault, Guard post, Hallway)
+2. Stats – name, age, HP ja health status (Full Health / Injured / Critical / Dead)
+3. Move – travel mihin tahansa viidestä roomista (Dungeon Cell, Ancient library, Mystical vault, Guard post, Hallway)
 4. Rest – fully restore HP
 5. Exit the game
 6. Show inventory
-7. Throw an item out (destroys it permanently and frees up weight)
+7. Throw an item out (destroys permanently ja frees up weightiä)
 8. Take the item lying in the current room
 9. Check HP
 10. Inspect the current room
-11. Interact with the room e.g. search the table in the Guard post, which can lead to Ending 2
+11. Interact with the room e.g. search the table Guard postissa, mikä voi johtaa Ending 2:teen
 12. Save game
 13. Load game
 14. Fight the enemy in the current room
 
-Additional details:
+Lisätiedot:
+Siirtyminen huoneeseen, jossa on vihollinen, tarjoaa automaattisesti taistelua.
+Pelaaja voi aina 'Juosta' (Run) pois taistelusta.
+Tunnettu rajoitus: parannusjuoma (healing potion) on olemassa esineenä, mutta sen käyttöä ei ole vielä yhdistetty valikkoon – HP palautetaan tällä hetkellä vain lepäämällä.
 
-- Moving into a room with an enemy automatically offers a fight.
-- The player can always 'Run' from a fight.
-- Known limitation: the healing potion exists as an item, but using it is not yet connected to the menu – HP is currently restored only by resting.
+KESTÄVÄ KEHITYS
 
-SUSTAINABLE DEVELOPMENT
-
-Sustainability has been taken into account in several ways:
-
-Ecological: Runs on lightweight text without graphics or network needs, saving energy.
-Social: age-gated at 12+, and offers peaceful win conditions without glorifying violence.
-Economic: Zero license or maintenance costs due to having no external dependencies.
-Technical: Modular structure, clear docstrings, and simple code.
-Data Responsibility: Keeps player name, age, and progress strictly local in a standard json.
+Kestävä kehitys on otettu huomioon useilla tavoilla:
+Ekologinen: Toimii kevyellä tekstillä ilman grafiikkaa tai verkkoyhteyden tarvetta, mikä säästää energiaa.
+Sosiaalinen: Ikäraja 12+, ja tarjoaa rauhanomaisia voittoehtoja ilman väkivallan ihannointia.
+Taloudellinen: Nollabudjetin lisenssi- tai ylläpitokustannukset, koska ulkoisia riippuvuuksia ei ole.
+Tekninen: Modulaarinen rakenne, selkeät docstring-dokumentaatiot ja yksinkertainen koodi.
+Tietovastuu: Säilyttää pelaajan nimen, iän ja edistymisen tiukasti paikallisesti standardissa JSON-muodossa.
